@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:43:39 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/08 01:46:56 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/04/08 10:43:59 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,15 @@ void	ft_fillnum(int **res_int, char **line, int *col,int row)
 		return ;
 	while (line[fill.i])
 	{
+		// fill.i = 2;
 		fill.res = ft_split(line[fill.i], ' ');  // str each row
 		count = 0;
 		while (fill.res[count])
 			count++;
-		// *col = count;
+		*col = count;
+		// printf("col : %d\n", *col);
+		// printf("count : %d\n", count);
+		// exit(0);
 		res_int[fill.i] = (int *)malloc(sizeof(int) * (count));
 		if (!res_int[fill.i])
 			return;
@@ -94,6 +98,8 @@ void	ft_fillnum(int **res_int, char **line, int *col,int row)
 		fill.i++;
 		printf("\n");
 	}
+	// exit(0);
 	// *col = count;
-	// printf("col : %d\n", *col);
+	// printf("rol\n");
+	printf("inner col : %d\n", *col);
 }
