@@ -6,7 +6,7 @@
 #    By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/07 13:49:56 by nkietwee          #+#    #+#              #
-#    Updated: 2023/04/07 22:19:02 by nkietwee         ###   ########.fr        #
+#    Updated: 2023/04/09 16:49:21 by nkietwee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,8 +24,11 @@ GET_NEXT_LINE_PATH = get_next_line/
 
 FDF_SRCS = ft_fdf.c\
 			ft_fillnbr.c\
+			ft_creteline.c\
 			ft_printerr.c\
 			ft_checkerr.c\
+			ft_crtpic.c\
+			ft_putarr_xy.c\
 
 LIBFT_SRCS = ft_atoi.c\
 			ft_isdigit.c\
@@ -47,10 +50,12 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 %.o:%.c
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -Imlx -c $< -o $@
+	# $(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	# $(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

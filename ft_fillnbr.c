@@ -6,13 +6,12 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:43:39 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/08 10:43:59 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:50:06 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fdf.h"
 
-// void ft_countline(char *av, int *row)
 int	ft_cntline(char *av)
 {
 	t_fillnbr	cnt_row;
@@ -56,7 +55,7 @@ char	**ft_split_line(int row, char *av)
 	return(sp_row.line);
 }
 
-void	ft_fillnum(int **res_int, char **line, int *col,int row)
+void	ft_fillnum(int **res_int, char **line, float *col, float row)
 {
 	t_fillnbr fill;
 	int a;
@@ -70,7 +69,6 @@ void	ft_fillnum(int **res_int, char **line, int *col,int row)
 		return ;
 	while (line[fill.i])
 	{
-		// fill.i = 2;
 		fill.res = ft_split(line[fill.i], ' ');  // str each row
 		count = 0;
 		while (fill.res[count])
@@ -89,17 +87,17 @@ void	ft_fillnum(int **res_int, char **line, int *col,int row)
 			if (!fill.res[a])
 				break;
 			res_int[fill.x][fill.y] = ft_atoi(fill.res[a]);
-			// printf("[%d][%d] : %d " ,x ,y ,res_int[x][y]);
-			printf(" %d " ,res_int[fill.x][fill.y]);
+			// // printf("[%d][%d] : %d " ,x ,y ,res_int[x][y]);
+			// printf(" %d " ,res_int[fill.x][fill.y]);
 			fill.y++;
 			a++;
 		}
 		fill.x++;
 		fill.i++;
-		printf("\n");
+		// printf("\n");
 	}
 	// exit(0);
 	// *col = count;
 	// printf("rol\n");
-	printf("inner col : %d\n", *col);
+	// printf("inner col : %d\n", *col);
 }
