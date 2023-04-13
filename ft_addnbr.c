@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:16:44 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/12 19:03:31 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/04/12 22:53:31 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void	ft_addarr_z(t_fillnbr *nbr, char *av)
 
 void	ft_addnbr(t_fillnbr *nbr, char *av)
 {
-	(void)av;
 	ft_allocate(nbr);
 	ft_addarr_x(nbr);
 	ft_addarr_y(nbr);

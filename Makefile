@@ -6,7 +6,7 @@
 #    By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/07 13:49:56 by nkietwee          #+#    #+#              #
-#    Updated: 2023/04/11 16:16:36 by nkietwee         ###   ########.fr        #
+#    Updated: 2023/04/12 22:26:47 by nkietwee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ FDF_SRCS = ft_fdf.c\
 			ft_util.c\
 			ft_count.c\
 			ft_addnbr.c\
+			ft_crtpic.c\
 
 LIBFT_SRCS = ft_atoi.c\
 			ft_isdigit.c\

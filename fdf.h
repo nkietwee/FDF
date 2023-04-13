@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:56:30 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/12 18:35:25 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/04/12 23:37:03 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # include <stdlib.h> // malloc
 # include <stdio.h> // printf
 # include <math.h> // sin cos tan
+
+# define CANNT_OPEN 1
+
+# define PI 3.141592
+# define ANGLE 0.523599 // 30 degree
+# define ANGLE2 1.0472 // 60 degree
+
+# define WHITE_CL 0xFFFFFF
 
 typedef struct	s_data1
 {
@@ -63,7 +71,9 @@ typedef struct	s_data4
 	t_point **node;
 } t_fillnbr;
 
+//cf
 void	ft_checkmap(int ac);
+void	ft_chkarg(int ac);
 
 //count and fill
 void	ft_count(t_fillnbr *nbr, char *av);
@@ -76,15 +86,12 @@ void	ft_addarr_y(t_fillnbr *nbr);
 void	ft_addarr_z(t_fillnbr *nbr, char *av);
 
 
+//crt
+void    ft_crete(t_fillnbr *nbr, t_keyhook *data);
+void	ft_isometric(t_fillnbr *nbr, t_keyhook *data);
+void	ft_crtrectangle(int row, int col, t_data *img);
 
-# define CANNT_OPEN 1
-
-# define PI 3.141592
-
-# define ANGLE 0.523599 // 30 degree
-# define ANGLE2 1.0472 // 60 degree
-
-# define WHITE_CL 0xFFFFFF
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 
 #endif
