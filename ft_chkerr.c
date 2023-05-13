@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:57:43 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/11 15:04:33 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:32:29 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	ft_checkmap(int ac)
 {
 	ft_chkarg(ac);
 	// ft_chkfileextension
-	//ft_chkalphabet
+	//ft_chkalphabet -> program doesn't check
 }

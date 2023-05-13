@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:18:27 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/12 18:37:51 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/11 01:09:18 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,39 @@ void	ft_countcol(t_fillnbr *nbr, char *av)
 	int	i;
 	int pv;
 	int	fd;
+	int	check;
 
 	i = 0;
 	fd = 0;
 	pv = 0;
-	fd = open(av , O_RDONLY);
-	nbr->col = 0;
-	// printf("Hello\n");
-	nbr->line_col = (char **)malloc(sizeof(char * ) * nbr->row);
+	fd = open(av, O_RDONLY);
+	nbr->line_col = (char **)malloc(sizeof(char *) * nbr->row);
 	if (!nbr->line_col)
 		return ;
 	while (1)
 	{
 		nbr->line_col[i] = get_next_line(fd);
-		if (!nbr->line_col[i]) // can't read 
+		if (!nbr->line_col[i]) // can't read
 			break ; // break or exit
-		nbr->z_2d = ft_split(nbr->line_col[i], ' '); // split colour
+		nbr->z_2d = ft_split(nbr->line_col[i], ' '); // left split colour
+		nbr->col = 0;
 		while (nbr->z_2d[nbr->col])
-		{
-			// exit(0);
 			nbr->col++;
+		if (nbr->z_2d[nbr->col - 1][0] == '\n')
+		{
+			printf(" i %d, found \n", i);
+			exit(0);
 		}
-			// printf("Hello   World\n");
-		// if (pv != nbr->col)  //chk amout of line
-		// 	printf("error\n");
-		// printf("%d , %d\n" , i, nbr->col);
+		if (i == 0)
+			check = nbr->col; 
 		i++;
+		if (check != nbr->col)
+		{
+			printf("line is not equal");
+			exit(0);
+		}
 	}
 	close(fd);
-	// printf("col : %d\n" , nbr->col);
-	// exit(0);
-
 }
 
 void	ft_countrow(t_fillnbr *nbr, char *av)
@@ -59,16 +61,20 @@ void	ft_countrow(t_fillnbr *nbr, char *av)
 	nbr->row = 0;
 
 	fd = open(av, O_RDONLY);
-	// printf ("fd : %d\n" , fd);
 	while (1)
 	{
 		nbr->line_row = get_next_line(fd); // don't forgot split colour
-		// printf("line : %s\n" ,nbr->line);
+		// printf("line : %s" ,nbr->line_row);
 		if (!nbr->line_row)
 			break;
 		nbr->row++;
 	}
 	// printf("%d\n" , nbr->row);
+	if (nbr->row == 0)
+	{
+		printf("blank file");
+		exit(0);
+	}
 	close(fd);
 }
 

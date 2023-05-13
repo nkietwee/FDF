@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:56:30 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/12 23:37:03 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:04:11 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,21 @@
 # include <stdio.h> // printf
 # include <math.h> // sin cos tan
 
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+# define WIN_WIDTH_CEN 960
+# define WIN_HEIGHT_CEN 540
+
+
+# define MAGIC 0.5
+# define MAGIC_Z 0.1
+
 # define CANNT_OPEN 1
 
 # define PI 3.141592
 # define ANGLE 0.523599 // 30 degree
 # define ANGLE2 1.0472 // 60 degree
+# define VAL_30 1.1547 // 30 degree
 
 # define WHITE_CL 0xFFFFFF
 
@@ -50,26 +60,27 @@ typedef struct	s_data2
 
 typedef struct	s_data3
 {
-	int	x;
-	int	y;
-	int	z;
+	float	x;
+	float	y;
+	float	z;
 	// int	colour;
 } t_point;
 
-typedef struct	s_data4
+typedef	struct	s_data4
 {
 	// char	**av;
 	int		row;
 	int		col;
-	int		i; //index foe keep arr2d
-	int		j; //index foe keep arr2d
+	int		ratio; //  distance between point
+	int		i; //index for keep arr2d
+	int		j; //index for keep arr2d
 	int		t; //loop split
 	char	*line_row; //count col
 	char	**line_col; //receive value from av
 	char	*line_z; // split for value z
 	char	**z_2d; // split for count col
 	t_point **node;
-} t_fillnbr;
+}	t_fillnbr;
 
 //cf
 void	ft_checkmap(int ac);
@@ -88,7 +99,15 @@ void	ft_addarr_z(t_fillnbr *nbr, char *av);
 
 //crt
 void    ft_crete(t_fillnbr *nbr, t_keyhook *data);
-void	ft_isometric(t_fillnbr *nbr, t_keyhook *data);
+void	ft_setratio(t_fillnbr *nbr);
+void	ft_setcenter(t_fillnbr *nbr);
+
+// void	ft_isometric(t_fillnbr *nbr, t_keyhook *data);
+float	ft_abs(float num);
+void	ft_dda(t_point *start, t_point *end, t_keyhook *crt);
+void	ft_isometric(t_fillnbr *nbr);
+// void	ft_isometric(float *x, float *y, float *z, float ratio);
+// void	ft_tryisometric(t_fillnbr *nbr, t_keyhook *ydata);
 void	ft_crtrectangle(int row, int col, t_data *img);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

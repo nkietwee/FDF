@@ -6,12 +6,12 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:16:44 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/04/12 22:53:31 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/13 16:39:38 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-//allocate meemory
+//allocate memmory
 void	ft_allocate(t_fillnbr *nbr)
 {
 	// printf("row : %d\n", nbr->row);
@@ -39,10 +39,30 @@ void	ft_allocate(t_fillnbr *nbr)
 void	ft_addarr_x(t_fillnbr *nbr)
 {
 	int	num_x;
-	// int	num_y;
 
 	nbr->i = 0;
 	num_x = 0;
+	while (nbr->i < nbr->row)
+	{
+		nbr->j = 0;
+		num_x = 0;
+		while(nbr->j < nbr->col)
+		{
+			nbr->node[nbr->i][nbr->j].x = num_x * nbr->ratio; // why use point
+			// printf("i : %d, j : %d, num_y : %d\n", nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].y);
+			num_x++;
+			nbr->j++;
+		}
+		nbr->i++;
+	}
+}
+void	ft_addarr_y(t_fillnbr *nbr)
+{
+	int	num_y;
+	// int	num_y;
+
+	nbr->i = 0;
+	num_y = 0;
 	// printf("column : %d\n" , nbr->col);
 	// exit(0);
 	while (nbr->i < nbr->row)
@@ -51,41 +71,18 @@ void	ft_addarr_x(t_fillnbr *nbr)
 		// num_y = 0;
 		while(nbr->j < nbr->col)
 		{
-			nbr->node[nbr->i][nbr->j].x = num_x; // why use point
+			nbr->node[nbr->i][nbr->j].y = num_y * nbr->ratio; // why use point
 			// nbr->node[nbr->i][nbr->j].y = num_y; // why use point
 			// printf("i : %d, j : %d, num_x : %d\n", nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].x);
 			// printf("i : %d, j : %d, num_y : %d\n", nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].y);
 			// num_y++;
 			nbr->j++;
 		}
-		num_x++;
+		num_y++;
 		nbr->i++;
 	}
 }
 
-void	ft_addarr_y(t_fillnbr *nbr)
-{
-	int	num_y;
-	int	fd;
-
-	nbr->i = 0;
-	nbr->j = 0;
-	fd = 0;
-	num_y = 0;
-	while (nbr->i < nbr->row)
-	{
-		nbr->j = 0;
-		num_y = 0;
-		while(nbr->j < nbr->col)
-		{
-			nbr->node[nbr->i][nbr->j].y = num_y; // why use point
-			// printf("i : %d, j : %d, num_y : %d\n", nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].y);
-			num_y++;
-			nbr->j++;
-		}
-		nbr->i++;
-	}
-}
 void	ft_addarr_z(t_fillnbr *nbr, char *av)
 {
 	int	fd;
@@ -108,7 +105,7 @@ void	ft_addarr_z(t_fillnbr *nbr, char *av)
 			nbr->j = 0;
 			while(nbr->z_2d[nbr->t])
 			{	
-				nbr->node[nbr->i][nbr->j].z = ft_atoi(nbr->z_2d[nbr->t]); // why use point
+				nbr->node[nbr->i][nbr->j].z = ft_atoi(nbr->z_2d[nbr->t]) * nbr->ratio * MAGIC_Z; // why use point
 				// printf("nbr[%d][%d] : %d\n" , nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].z);
 				nbr->t++;
 				nbr->j++;
@@ -118,17 +115,17 @@ void	ft_addarr_z(t_fillnbr *nbr, char *av)
 		nbr->i++;
 	}
 	close(fd);
-	// exit(0);
 
 }
 
 void	ft_addnbr(t_fillnbr *nbr, char *av)
 {
+	ft_setratio(nbr);
 	ft_allocate(nbr);
 	ft_addarr_x(nbr);
 	ft_addarr_y(nbr);
 	ft_addarr_z(nbr, av);
-
+	//ft_checkalpla
 }
 
 //draft add arr_x arr_y
@@ -161,6 +158,59 @@ void	ft_addnbr(t_fillnbr *nbr, char *av)
 // 			nbr->j++;
 // 		}
 // 		num_x++;
+// 		nbr->i++;
+// 	}
+// }
+
+
+// // //add arrx_y
+// void	ft_addarr_x(t_fillnbr *nbr)
+// {
+// 	int	num_x;
+// 	// int	num_y;
+
+// 	nbr->i = 0;
+// 	num_x = 0;
+// 	// printf("column : %d\n" , nbr->col);
+// 	// exit(0);
+// 	while (nbr->i < nbr->row)
+// 	{
+// 		nbr->j = 0;
+// 		// num_y = 0;
+// 		while(nbr->j < nbr->col)
+// 		{
+// 			nbr->node[nbr->i][nbr->j].x = num_x; // why use point
+// 			// nbr->node[nbr->i][nbr->j].y = num_y; // why use point
+// 			// printf("i : %d, j : %d, num_x : %d\n", nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].x);
+// 			// printf("i : %d, j : %d, num_y : %d\n", nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].y);
+// 			// num_y++;
+// 			nbr->j++;
+// 		}
+// 		num_x++;
+// 		nbr->i++;
+// 	}
+// }
+
+// void	ft_addarr_y(t_fillnbr *nbr)
+// {
+// 	int	num_y;
+// 	int	fd;
+
+// 	nbr->i = 0;
+// 	nbr->j = 0;
+// 	fd = 0;
+// 	num_y = 0;
+// 	while (nbr->i < nbr->row)
+// 	{
+// 		nbr->j = 0;
+// 		num_y = 0;
+// 		while(nbr->j < nbr->col)
+// 		{
+// 			nbr->node[nbr->i][nbr->j].y = num_y; // why use point
+// 			// printf("i : %d, j : %d, num_y : %d\n", nbr->i, nbr->j, nbr->node[nbr->i][nbr->j].y);
+// 			num_y++;
+// 			nbr->j++;
+// 		}
 // 		nbr->i++;
 // 	}
 // }
