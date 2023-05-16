@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:56:30 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/16 16:47:19 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/16 21:36:26 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define WIN_HEIGHT_CEN 540
 
 
-# define MAGIC 0.3
+# define MAGIC 0.3 //edit
 # define MAGIC_Z 0.1
 
 # define CANNT_OPEN 1
@@ -84,6 +84,7 @@ typedef	struct	s_data4
 	char	**line_col; //receive value from av
 	char	*line_z; // split for value z
 	char	**z_2d; // split for count col
+	char	**z_val; // split for color
 	t_point **node;
 }	t_fillnbr;
 
@@ -108,17 +109,13 @@ void	ft_setratio(t_fillnbr *nbr);
 void	ft_setcenter(t_fillnbr *nbr, t_keyhook *data);
 // void	ft_setcenter(t_fillnbr *nbr);
 
-// void	ft_isometric(t_fillnbr *nbr, t_keyhook *data);
 float	ft_abs(float num);
-// void	ft_dda(t_point *start, t_point *end, t_keyhook *crt);
-void	ft_dda(t_point *start, t_point *end, t_keyhook *crt, long color);
+void	ft_dda(t_point *start, t_point *end, t_keyhook *crt);
 // void	ft_isometric(t_fillnbr *nbr);
 void	ft_isometric(t_fillnbr *nbr , t_keyhook *crt);
-// void	ft_isometric(float *x, float *y, float *z, float ratio);
-// void	ft_tryisometric(t_fillnbr *nbr, t_keyhook *ydata);
 void	ft_crtrectangle(int row, int col, t_data *img);
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
+long    ft_htoi(char *str);
 
 #endif

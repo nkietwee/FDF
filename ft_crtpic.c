@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:27:08 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/16 19:22:27 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/16 21:35:55 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ float	ft_findmax(float dx, float dy)
 	return(dy);	
 }
 
-void	ft_dda(t_point *start, t_point *end, t_keyhook *crt, long color)
+void	ft_dda(t_point *start, t_point *end, t_keyhook *crt)
 {
 	float	dx;
 	float	dy;
@@ -75,7 +75,7 @@ void	ft_dda(t_point *start, t_point *end, t_keyhook *crt, long color)
 	{
 		tmp_start_x = tmp_start_x + x_incre;
 		tmp_start_y = tmp_start_y + y_incre;
-		my_mlx_pixel_put(&crt->img, (int)(tmp_start_x), (int)(tmp_start_y), color); //put point
+		my_mlx_pixel_put(&crt->img, (int)(tmp_start_x + 400), (int)(tmp_start_y - 200) , start->color); //put point
 		i++;
 		// put pixel(start->x, start->y)
 	}
@@ -89,23 +89,27 @@ void	ft_createline(t_fillnbr *nbr, t_keyhook *img)
 
     i = 0;
 	j = 0;
+	// printf("col : %d\n" ,nbr->col);
+	// printf("row : %d\n" ,nbr->row);
+	// exit(0);
 	while (j < nbr->row)
 	{
 		i = 0;
 		while (i < nbr->col - 1)
 		{
 			if (i < nbr->col - 1)
-				ft_dda(&nbr->node[i][j], &nbr->node[i + 1][j], img , WHITE_CL);
+				ft_dda(&nbr->node[i][j], &nbr->node[i + 1][j], img);
+				// ft_dda(&nbr->node[i][j], &nbr->node[i + 1][j], img , WHITE_CL);
 			// printf("bf[%.3f][%.3f] [%.3f][%.3f]\n" , nbr->node[i][j].x, nbr->node[i][j].y, nbr->node[i + 1][j].x ,nbr->node[i + 1][j].y);
-			// printf("bf[%d][%d] [%d][%d] " , i, j, i + 1, j);
+			printf("bf[%d][%d] [%d][%d] " , i, j, i + 1, j);
 			if (j < nbr->row - 1)
-				ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img , GREEN_CL);
+				ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img);
 			// // printf("bf[%.3f][%.3f] [%.3f][%.3f] " , nbr->node[i][j].x, nbr->node[i][j].y, nbr->node[i][j + 1].x ,nbr->node[i][j + 1].y);
-			// // printf("at[%d][%d] [%d][%d]\n" , i, j, i, j + 1);
+			printf("at[%d][%d] [%d][%d]\n" , i, j, i, j + 1);
 			i++;
 		}
 		if (i == nbr->col - 1 && j < nbr->row - 1 ) // in case last column
-			ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img, WHITE_CL);	
+			ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img);	
 		j++;
 	}
 
@@ -290,9 +294,9 @@ void	ft_resetdata(t_fillnbr *nbr, t_point *value , t_keyhook *data)
 	// 	}
 	// 	i++;
 	// }
-	// // exit(0);
 	ft_isometric(nbr ,data);
-
+	// exit(0);
+	
 }
 
 void    ft_create(t_fillnbr *nbr, t_keyhook *data)
