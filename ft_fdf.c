@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:39:46 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/12 16:34:26 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:26:39 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 	ft_checkmap(ac);
 	ft_count(&nbr, av[1]);
 	ft_addnbr(&nbr, av[1]);
-	ft_crete(&nbr, &display);
+	ft_create(&nbr, &display);
 	my_mlx_pixel_put(&display.img, 10, 10 , WHITE_CL); //put point
 	
 	mlx_put_image_to_window(display.mlx, display.mlx_win, display.img.img, 0, 0); // put pic to window

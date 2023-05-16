@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:27:08 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/13 16:37:33 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/16 19:22:27 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,34 +37,15 @@ float	ft_abs(float num)
 		return(-num);
 	return(num);
 }
-// // void	ft_dda(float start, float end)
-// void	ft_dda(t_point *start, t_point *end, t_keyhook *crt)
-// {
-// 	float	dx;
-// 	float	dy;
-// 	float	step;
-// 	float 	x_incre;
-// 	float 	y_incre;
-// 	int		i;
 
-// 	dx = end->x - start->x;
-// 	dy = end->y - start->y;
-// 	i = 0;
-// 	if (ft_abs(dx) > ft_abs(dy))
-// 		step = ft_abs(dx);
-// 	else 
-// 		step = ft_abs(dy);
-// 	x_incre = dx / step;
-// 	y_incre = dy / step;
-// 	while (i < step)
-// 	{
-// 		start->x = start->x + x_incre;
-// 		start->y = start->y + y_incre;
-// 		my_mlx_pixel_put(&crt->img, (int)(start->x), (int)(start->y), WHITE_CL); //put point
-// 		// put pixel(start->x, start->y)
-// 	}
-// }
-void	ft_dda(t_point *start, t_point *end, t_keyhook *crt)
+float	ft_findmax(float dx, float dy)
+{
+	if (dx > dy)
+		return (dx);
+	return(dy);	
+}
+
+void	ft_dda(t_point *start, t_point *end, t_keyhook *crt, long color)
 {
 	float	dx;
 	float	dy;
@@ -72,65 +53,124 @@ void	ft_dda(t_point *start, t_point *end, t_keyhook *crt)
 	float 	x_incre;
 	float 	y_incre;
 	int		i;
+	float	tmp_start_x;
+	float	tmp_start_y;
+	(void)crt;
 
 	dx = end->x - start->x;
 	dy = end->y - start->y;
-	// printf("dx : %f\n" ,dx);
-	// printf("dy : %f\n" ,dy);
-	i = 0;
-	if (ft_abs(dx) > ft_abs(dy))
-		step = ft_abs(dx);
-	else 
-		step = ft_abs(dy);
-	// printf("step : %f\n" ,step);
+	step = ft_findmax(ft_abs(dx), ft_abs(dy));
+	// if (ft_abs(dx) > ft_abs(dy))
+	// 	step = ft_abs(dx);
+	// else 
+	// 	step = ft_abs(dy);
+	
 	x_incre = dx / step;
 	y_incre = dy / step;
-	// printf("x_incre : %f\n" ,x_incre);
-	// printf("y_incre : %f\n" ,y_incre);
+	
+	i = 0;
+	tmp_start_x = start->x;
+	tmp_start_y = start->y;
 	while (i < step)
 	{
-		start->x = start->x + x_incre;
-		start->y = start->y + y_incre;
-		// printf("x_start : %f\n" ,start->x);
-		// printf("y_start : %f\n" ,start->y);
-		// exit(0);
-		my_mlx_pixel_put(&crt->img, (int)(start->x), (int)(start->y), WHITE_CL); //put point
+		tmp_start_x = tmp_start_x + x_incre;
+		tmp_start_y = tmp_start_y + y_incre;
+		my_mlx_pixel_put(&crt->img, (int)(tmp_start_x), (int)(tmp_start_y), color); //put point
 		i++;
 		// put pixel(start->x, start->y)
 	}
 }
 
 
-void	ft_creteline(t_fillnbr *nbr, t_keyhook *img)
+void	ft_createline(t_fillnbr *nbr, t_keyhook *img)
 {
 	int	i;
 	int	j;
 
     i = 0;
-    j = 0;
-	while (i < nbr->row) // horizontal
-	{
-		j = 0;
-		while (j < (nbr->col - 1))
-		{
-			ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img);
-			j++;
-		}
-		i++;
-	}
 	j = 0;
-	while (j < nbr->col) // vertical
+	while (j < nbr->row)
 	{
 		i = 0;
-		while (i < nbr->row - 1)
+		while (i < nbr->col - 1)
 		{
-			printf("[i][j] : [%d][%d]\n" ,i,j);
-			ft_dda(&nbr->node[i][j], &nbr->node[i + 1][j], img);
+			if (i < nbr->col - 1)
+				ft_dda(&nbr->node[i][j], &nbr->node[i + 1][j], img , WHITE_CL);
+			// printf("bf[%.3f][%.3f] [%.3f][%.3f]\n" , nbr->node[i][j].x, nbr->node[i][j].y, nbr->node[i + 1][j].x ,nbr->node[i + 1][j].y);
+			// printf("bf[%d][%d] [%d][%d] " , i, j, i + 1, j);
+			if (j < nbr->row - 1)
+				ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img , GREEN_CL);
+			// // printf("bf[%.3f][%.3f] [%.3f][%.3f] " , nbr->node[i][j].x, nbr->node[i][j].y, nbr->node[i][j + 1].x ,nbr->node[i][j + 1].y);
+			// // printf("at[%d][%d] [%d][%d]\n" , i, j, i, j + 1);
 			i++;
 		}
+		if (i == nbr->col - 1 && j < nbr->row - 1 ) // in case last column
+			ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img, WHITE_CL);	
 		j++;
 	}
+
+	// i = nbr->col - 1;
+	// j = 0;
+	// while (j < nbr->row - 1)
+	// {
+	// 	// printf("entry\n");
+	// 	// printf("out_vt[%d][%d] [%d][%d]\n" , i, j, i, j + 1);
+	// 	// printf("--outvt[%d][%d] [%.3f][%.3f]\n" , i, j, nbr->node[i][j].x, nbr->node[i][j].y);
+	// 	// printf("--outvt[%d][%d] [%.3f][%.3f]\n" , i, j + 1, nbr->node[i][j].x, nbr->node[i][j + 1].y);
+	// 	ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img, PINK_CL);
+	// 	j++;
+	// }
+
+	// while (j < nbr->row) // horizontal
+	// {
+	// 	i = 0;
+	// 	while (i < nbr->col - 1)
+	// 	{
+	// 		// if (i < nbr->col - 1)
+	// 		ft_dda(&nbr->node[i][j], &nbr->node[i + 1][j], img, WHITE_CL);
+	// 		printf("ht[%d][%d] [%d][%d]\n" , i, j, i + 1, j);
+	// 		i++;
+	// 	}
+	// 	j++;
+	
+	// }
+	
+	// i = 0;
+	// while (i < nbr->col) //vertical
+	// {
+	// 	j = 0;
+	// 	while (j < nbr->row - 1)
+	// 	{
+	// 		// if (j < nbr->row - 1)
+	// 		// {
+	// 		printf("--vt[%d][%d] [%d][%d]\n" , i, j, i, j + 1);
+	// 		// 	printf("--vt[%d][%d] [%.3f][%.3f]\n" , i, j, nbr->node[i][j].x, nbr->node[i][j].y);
+	// 		// printf("--vt[%d][%d] [%.3f][%.3f]\n" , i, j + 1, nbr->node[i][j].x, nbr->node[i][j + 1].y);
+	// 		// 	// if (i == 0)
+	// 		// 	// 	ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img, BLUE_CL);
+	// 		// 	// else
+	// 		ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img, GREEN_CL);
+	// 		// }
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	
+	// i = 0;
+	// j = 0;
+	// while (j < nbr->row - 1)
+	// {
+	// 	// printf("entry\n");
+	// 	// printf("out_vt[%d][%d] [%d][%d]\n" , i, j, i, j + 1);
+	// 	printf("--outvt[%d][%d] [%.3f][%.3f]\n" , i, j, nbr->node[i][j].x, nbr->node[i][j].y);
+	// 	printf("--outvt[%d][%d] [%.3f][%.3f]\n" , i, j + 1, nbr->node[i][j].x, nbr->node[i][j + 1].y);
+	// 	ft_dda(&nbr->node[i][j], &nbr->node[i][j + 1], img, PINK_CL);
+	// 	j++;
+	// }
 	// exit(0);
+
+
+
 }
 
 void	ft_setratio(t_fillnbr *nbr)
@@ -138,7 +178,8 @@ void	ft_setratio(t_fillnbr *nbr)
 	float	i;
 
 	i = 0;
-	while(i * (nbr->row + nbr->col) < WIN_HEIGHT * VAL_30 * MAGIC)
+	// while(i * (nbr->row + nbr->col) < WIN_WIDTH * VAL_30 * MAGIC)
+	while(i  < WIN_WIDTH / (((nbr->row + nbr->col)) * cos(ANGLE)) * MAGIC)
 	{
 		i++;
 	}
@@ -147,66 +188,84 @@ void	ft_setratio(t_fillnbr *nbr)
 	// exit(0);
 }
 
-// void	ft_isometric(float *x, float *y, float *z, float ratio)
-void	ft_isometric(t_fillnbr *nbr)
+void	ft_isometric(t_fillnbr *nbr , t_keyhook *crt)
 {
 	float x_keep;
 	float y_keep;
 	int	i;
 	int	j;
+	(void)crt;
 
 	i = 0;
 	// printf("ratio : %d\n" , nbr->ratio);	
-	while (i < nbr->row)
+	while (i < nbr->col)
 	{
-		x_keep = nbr->node[i][j].x;
-		y_keep = nbr->node[i][j].y;
 		j = 0;
-		while (j < nbr->col)
+		while (j < nbr->row)
 		{
 			x_keep = nbr->node[i][j].x;
 			y_keep = nbr->node[i][j].y;
-			// printf("x_keep[%d][%d] : %.3f\n" , i, j ,x_keep);
-			// printf("y_keep[%d][%d] : %.3f\n" , i, j ,y_keep);
-			
-			// nbr->node[i][j].x = (x_keep - y_keep) * cos(ANGLE) * nbr->ratio;
-			// nbr->node[i][j].y = ((x_keep + y_keep) * sin(ANGLE) - nbr->node[i][j].z) * nbr->ratio;
+			// printf("at [%d][%d] :[%.3f][%.3f]\n" , i, j ,nbr->node[i][j].x, nbr->node[i][j].y);
+			// printf("at [%d][%d] :[%.3f][%.3f]\n" , i, j , x_keep, y_keep);
+			// my_mlx_pixel_put(&crt->img, (int)(nbr->node[i][j].x ), (int)(nbr->node[i][j].y) , WHITE_CL);
 			nbr->node[i][j].x = (x_keep - y_keep) * cos(ANGLE);
-			nbr->node[i][j].y = ((x_keep + y_keep) * sin(ANGLE) - nbr->node[i][j].z);
+			nbr->node[i][j].y = ((x_keep + y_keep) * sin(ANGLE)) - nbr->node[i][j].z;
 			// printf("x_iso[%d][%d] : %.3f\n" , i, j ,nbr->node[i][j].x);
 			// printf("y_iso[%d][%d] : %.3f\n" , i, j ,nbr->node[i][j].y);
-			// exit(0);
+			// printf("bf [%d][%d] :[%.3f][%.3f]\n" , i, j ,nbr->node[i][j].x, nbr->node[i][j].y);
+			// printf("start\n");
+			// my_mlx_pixel_put(&crt->img, (int)(nbr->node[i][j].x ), (int)(nbr->node[i][j].y) , nbr->node[i][j].color);
+
 			j++;
 		}
+		// printf("\n");
 		i++;
 	}
 	// exit(0);
 }
 
-void	ft_setcenter(t_fillnbr *nbr)
+float	ft_isomap(float x_map, float y_map , char axis)
 {
-	float	x_move;
-	float	y_move;
+	if (axis == 'x')
+		return ((x_map - y_map) * cos(ANGLE));
+	if (axis == 'y')
+		return ((x_map + y_map) * sin(ANGLE));
+	return(0);
+}
+
+
+void	ft_setcenter(t_fillnbr *nbr, t_keyhook *crt)
+{
+	float	x_map;
+	float	y_map;
+	float	x_cen;
+	float	y_cen;
 	int		i;
 	int		j;
 
+	(void)crt;
+
 	i = 0;
 	j = 0;
-	// x_move =  (WIN_WIDTH / 2) + (nbr->row / 2);
-    // y_move =  (WIN_HEIGHT / 2) + (nbr->col / 2);
-    x_move =  (WIN_WIDTH_CEN) - (nbr->col / 2);
-	y_move =  (WIN_HEIGHT_CEN) - (nbr->row / 2);
-	
-	while (i < nbr->row)
+
+    // x_move =  ((float)WIN_WIDTH_CEN) - (nbr->col / 2 * nbr->ratio);
+	// y_move =  ((float)WIN_HEIGHT_CEN) - (nbr->row / 2 * nbr->ratio);
+    x_map =  nbr->col / 2 * nbr->ratio;
+	y_map =  nbr->row / 2 * nbr->ratio;
+	x_cen = (float)WIN_WIDTH_CEN - (ft_isomap(x_map, y_map, 'x'));
+	y_cen = (float)WIN_HEIGHT_CEN - (ft_isomap(x_map, y_map, 'y'));
+	while (i < nbr->col)
 	{
 		j = 0;
-		while (j < nbr->col)
+		while (j < nbr->row)
 		{
-			nbr->node[i][j].x = nbr->node[i][j].x + x_move; 
-			nbr->node[i][j].y = nbr->node[i][j].y + y_move; 
+			// iso_xyz()
+			nbr->node[i][j].x = nbr->node[i][j].x + x_cen; 
+			nbr->node[i][j].y = nbr->node[i][j].y + y_cen; 
 			// printf("x_cen[%d][%d] :%.3f\n" , i, j ,nbr->node[i][j].x);
 			// printf("y_cen[%d][%d] :%.3f\n" , i, j ,nbr->node[i][j].y);
 			// exit(0);
+			// my_mlx_pixel_put(&crt->img, (int)(nbr->node[i][j].x), (int)(nbr->node[i][j].y), WHITE_CL); //put point
 			j++;
 		}
 		i++;
@@ -215,19 +274,32 @@ void	ft_setcenter(t_fillnbr *nbr)
 }
 
 
-void	ft_resetdata(t_fillnbr *nbr, t_point *value)
+void	ft_resetdata(t_fillnbr *nbr, t_point *value , t_keyhook *data)
 {
 	(void)value;
-	// ft_setratio(nbr);
-	ft_setcenter(nbr);
-	ft_isometric(nbr);
+	ft_setratio(nbr);
+	ft_setcenter(nbr, data);
+	// int	i= 0;
+	// while (i < nbr->col)
+	// {
+	// 	int j = 0;
+	// 	while (j < nbr->row)
+	// 	{
+	// 		// printf("bf [%d][%d] :[%.3f][%.3f]\n" , i, j ,nbr->node[i][j].x, nbr->node[i][j].y);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+	// // exit(0);
+	ft_isometric(nbr ,data);
 
 }
-void    ft_crete(t_fillnbr *nbr, t_keyhook *data)
+
+void    ft_create(t_fillnbr *nbr, t_keyhook *data)
 {
-	ft_resetdata(nbr, *nbr->node);
+	ft_resetdata(nbr, *nbr->node , data);
 	// ft_isometric(nbr, data);
-	ft_creteline(nbr, data);
+	ft_createline(nbr, data);
 
 }
 
