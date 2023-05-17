@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_chkerr.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/11 14:57:43 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/17 15:02:33 by nkietwee         ###   ########.fr       */
+/*   Created: 2023/05/17 16:41:25 by nkietwee          #+#    #+#             */
+/*   Updated: 2023/05/18 01:08:52 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fdf.h"
+#include "fdf.h"
 
-void	ft_ft_checkextension
-void	ft_checkarg(int ac)
+void    ft_free2d(char **str)
 {
-	if (ac != 2)
-	{
-		ft_putstr_fd("check argument\n", 2);
-		exit(1);
-	}
+    int i;
 
+    i = 0;
+    while (str[i])
+    {
+        free (str[i]);
+        i++;
+    }
+    free (str);
 }
-void	ft_checkmap(int ac)
+
+void    ft_freestruct2d(t_point **str)
 {
-	ft_checkarg(ac);
-	ft_checkextension();
-	//ft_chkalphabet
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        free (str[i]);
+        i++;
+    }
+    free (str);
 }

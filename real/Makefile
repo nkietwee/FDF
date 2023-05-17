@@ -15,7 +15,7 @@ NAME = fdf
 
 CC = cc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werro-g -fsanitize=address
 
 RM = rm -f
 
