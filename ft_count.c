@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:18:27 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/18 02:22:36 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:50:33 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,9 @@
 void	ft_checkcol(t_fillnbr *nbr, int check)
 {
 	if (nbr->z_2d[nbr->col - 1][0] == '\n')
-	{
-		printf("Error");
-		exit(0);
-	}		
+		ft_printerr(ER_MAP);
 	if (check != nbr->col)
-	{
-		printf("line is not equal");
-		exit(0);
-	}
+		ft_printerr(ER_MAP);
 }
 
 void	ft_countcol(t_fillnbr *nbr, char *av)
@@ -31,7 +25,8 @@ void	ft_countcol(t_fillnbr *nbr, char *av)
 	nbr->i = 0;
 	nbr->pv = 0;
 	nbr->fd = open(av, O_RDONLY);
-	nbr->line_col = (char **)malloc(sizeof(char *) * nbr->row);
+	ft_checkfd(nbr->fd);
+	nbr->line_col = (char **)malloc(sizeof(char *) * (nbr->row + 1));
 	if (!nbr->line_col)
 		return ;
 	while (nbr->i < nbr->row)
@@ -39,6 +34,7 @@ void	ft_countcol(t_fillnbr *nbr, char *av)
 		nbr->line_col[nbr->i] = get_next_line(nbr->fd);
 		if (!nbr->line_col[nbr->i])
 			break ;
+		nbr->line_col[nbr->i + 1] = 0;
 		nbr->z_2d = ft_split(nbr->line_col[nbr->i], ' ');
 		nbr->col = 0;
 		while (nbr->z_2d[nbr->col])
@@ -61,6 +57,7 @@ void	ft_countrow(t_fillnbr *nbr, char *av)
 	nbr->line_row = NULL;
 	nbr->row = 0;
 	fd = open(av, O_RDONLY);
+	ft_checkfd(fd);
 	while (1)
 	{
 		nbr->line_row = get_next_line(fd);
@@ -70,10 +67,7 @@ void	ft_countrow(t_fillnbr *nbr, char *av)
 		nbr->row++;
 	}
 	if (nbr->row == 0)
-	{
-		printf("blank file");
-		exit(0);
-	}
+		ft_printerr(ER_MAP);
 	close(fd);
 }
 

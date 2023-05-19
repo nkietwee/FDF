@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:36:56 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/10 16:38:30 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:19:06 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,21 @@ static char	*ft_printword(char const *s, char c, size_t *start)
 	return (res);
 }
 
-// char	**ft_split(char const *s, char c, size_t *count)
 char	**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	start;
 	size_t	count;
 	char	**ans;
-	// *count = 0;
 
 	i = 0;
 	start = 0;
 	if (!s)
 		return (NULL);
-	// *count = ft_countword(s, c);
 	count = ft_countword(s, c);
-	// exit(0);
-	// ans = (char **)malloc(sizeof(char *) * (*count + 1));
 	ans = (char **)malloc(sizeof(char *) * (count + 1));
 	if (!ans)
 		return (NULL);
-	// while (i < *count)
 	while (i < count)
 	{
 		ans[i] = ft_printword(s, c, &start);

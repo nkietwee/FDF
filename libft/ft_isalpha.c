@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free.c                                          :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nkietwee <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 16:41:25 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/19 13:35:36 by nkietwee         ###   ########.fr       */
+/*   Created: 2022/09/03 11:58:55 by nkietwee          #+#    #+#             */
+/*   Updated: 2022/10/16 14:23:20 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	ft_free2d(char **str)
+int	ft_isalpha(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		free (str[i]);
-		i++;
-	}	
-	free (str);
-}
-
-void	ft_freestruct2d(t_point **point)
-{
-	int	i;
-
-	i = 0;
-	while (point[i])
-	{
-		free (point[i]);
-		i++;
-	}	
-	free (point);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }

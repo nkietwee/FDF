@@ -6,7 +6,7 @@
 #    By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/07 13:49:56 by nkietwee          #+#    #+#              #
-#    Updated: 2023/05/18 02:22:58 by nkietwee         ###   ########.fr        #
+#    Updated: 2023/05/19 21:12:46 by nkietwee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror -g 
 #-fsanitize=address 
-
 
 RM = rm -f
 
@@ -32,13 +31,15 @@ FDF_SRCS = ft_fdf.c\
 			ft_count.c\
 			ft_addnbr.c\
 			ft_crtpic.c\
-			ft_free.c
+			ft_free.c\
+			ft_drawline.c\
 
 LIBFT_SRCS = ft_atoi.c\
 			ft_isdigit.c\
 			ft_putstr_fd.c\
 			ft_split.c\
 			ft_strlen.c\
+			ft_isalpha.c\
 
 
 GET_NEXT_LINE_SRCS = get_next_line.c\
