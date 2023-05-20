@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:16:44 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/20 02:45:32 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/20 14:58:27 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	ft_addvalue(t_fillnbr *nbr)
 		// 	ft_printerr(ER_MAP);
 		nbr->t++;
 		nbr->i++;
-		// printf("val_add : %.3f\n" ,nbr->node[3][1].z);
 		
 		ft_free2d(nbr->z_val);
 	}
@@ -104,7 +103,6 @@ void	ft_addarr_z(t_fillnbr *nbr, char *av)
 		}
 		nbr->j++;
 	}
-	// printf("valinner : %.3f\n" ,nbr->node[3][1].z);
 	close(fd);
 }
 
@@ -115,6 +113,6 @@ void	ft_addnbr(t_fillnbr *nbr, char *av)
 	ft_addarr_x(nbr);
 	ft_addarr_y(nbr);
 	ft_addarr_z(nbr, av);
-	// printf("val : %.3f\n" ,nbr->node[3][1].z);
+	// printf("%.3f %.3f" , nbr->node[3][1].x , nbr->node[3][1].y);
 	// exit(0);
 }

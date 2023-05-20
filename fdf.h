@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:56:30 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/19 23:33:40 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/20 11:15:06 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_drawline
 	float	step;
 	float	x_incre;
 	float	y_incre;
-	int		i;
+	float	i;
 	float	tmp_start_x;
 	float	tmp_start_y;
 }	t_drawline;
