@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:16:44 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/20 14:58:27 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/22 00:48:04 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,27 @@ void	ft_addarr_y(t_fillnbr *nbr)
 
 void	ft_addvalue(t_fillnbr *nbr)
 {
+	int	t;
+
 	while (nbr->z_2d[nbr->t])
 	{	
 		nbr->z_val = ft_split(nbr->z_2d[nbr->t], ',' );
-		nbr->node[nbr->i][nbr->j].z = ft_atoi(nbr->z_val[0]) \
-			* nbr->ratio * MAGIC_Z;	
-		if (nbr->z_val[1])
-			nbr->node[nbr->i][nbr->j].color = ft_htoi(nbr->z_val[1]);
-		else if (nbr->z_val[0])
-			nbr->node[nbr->i][nbr->j].color = (long)(BLUE_CL);
-		// else
-		// 	ft_printerr(ER_MAP);
+		t = 0;
+		while (nbr->z_val[t])
+			t++;
+		if (t == 1 || t == 2)
+		{
+			nbr->node[nbr->i][nbr->j].z = ft_atoi(nbr->z_val[0]) \
+				* nbr->ratio * MAGIC_Z;
+			if (nbr->z_val[1])
+				nbr->node[nbr->i][nbr->j].color = ft_htoi(nbr->z_val[1]);
+			else if (nbr->z_val[0])
+				nbr->node[nbr->i][nbr->j].color = (long)(BLUE_CL);
+		}
+		else
+			ft_printerr(ER_MAP);
 		nbr->t++;
 		nbr->i++;
-		
 		ft_free2d(nbr->z_val);
 	}
 }
@@ -113,6 +120,4 @@ void	ft_addnbr(t_fillnbr *nbr, char *av)
 	ft_addarr_x(nbr);
 	ft_addarr_y(nbr);
 	ft_addarr_z(nbr, av);
-	// printf("%.3f %.3f" , nbr->node[3][1].x , nbr->node[3][1].y);
-	// exit(0);
 }

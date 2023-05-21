@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 21:49:04 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/19 22:27:15 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/22 00:38:10 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_printerr(int mode)
 		ft_putstr_fd("Error\n", 2);
 	else if (mode == 3)
 		ft_putstr_fd("Check arg\n", 2);
-	exit(0);
+	exit(1);
 }
 
 void	ft_checkfd(int fd)

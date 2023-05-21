@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:39:46 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/20 16:42:13 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/22 00:06:42 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
-	// if (x >= WIN_WIDTH || y >= WIN_HEIGHT)
-	// 	return ;
-	if ((x >= 0 && x < WIN_WIDTH ) && (y >= 0 && y < WIN_HEIGHT ))
+	if ((x >= 0 && x < WIN_WIDTH) && (y >= 0 && y < WIN_HEIGHT))
 	{
-		dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+		dst = data->addr + (y * data->line_length + x \
+		* (data->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
 	}
-	else
-		ft_printerr(ER_MAP);
 }
 
 int	main(int ac, char **av)

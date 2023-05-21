@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:57:43 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/18 21:42:31 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/22 01:14:16 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_checkextension(char *av)
 	if (!av)
 		return ;
 	len = ft_strlen(av);
-	if (len > 4)
+	if (len > 3)
 	{
 		if (av[len - 1] == 'f' && av[len - 2] == 'd' \
 		&& av[len - 3] == 'f' && av[len - 4] == '.')

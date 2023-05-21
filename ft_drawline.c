@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 21:58:00 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/20 16:22:55 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/22 00:06:58 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	ft_createline(t_fillnbr *nbr, t_keyhook *img)
 
 	i = 0;
 	j = 0;
-	// printf("col : %d\n" , nbr->col);
-	// printf("row : %d\n" , nbr->row);
 	while (j < nbr->row)
 	{
 		i = 0;

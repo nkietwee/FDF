@@ -6,11 +6,12 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:04:24 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/19 23:57:12 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/22 00:08:57 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 static	void	ft_printerror(char *str, int fd)
 {
 	if (!str)
@@ -18,6 +19,7 @@ static	void	ft_printerror(char *str, int fd)
 	write(fd, str, ft_strlen(str));
 	exit(0);
 }
+
 static	void	ft_checkbfatoi(char c)
 {
 	if (ft_isdigit(c) == 0 && c != '\0' && c != '\n')
