@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 14:56:30 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/20 11:15:06 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/26 02:37:48 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define WIN_HEIGHT 1080
 # define WIN_WIDTH_CEN 960
 # define WIN_HEIGHT_CEN 540
-# define MAGIC 0.43
+# define MAGIC 0.9
 # define MAGIC_Z 0.1
 # define CANNT_OPEN 1
 # define ER_MAP 2

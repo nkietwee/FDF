@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 11:16:12 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/19 22:37:22 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/26 02:45:24 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ long	ft_htoi(char *str)
 		if (str[i] >= 'a' && str[i] <= 'f')
 			res = (16 * res) + (str[i] - 'a' + 10);
 		else if (str[i] >= 'A' && str[i] <= 'F')
-				res = (16 * res) + (str[i] - 'a' + 10);
+			res = (16 * res) + (str[i] - 'A' + 10);
 		else if (str[i] >= '0' && str[i] <= '9')
 			res = (16 * res) + (str[i] - '0');
 		i++;

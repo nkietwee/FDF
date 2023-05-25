@@ -6,7 +6,7 @@
 /*   By: nkietwee <nkietwee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 22:27:08 by nkietwee          #+#    #+#             */
-/*   Updated: 2023/05/22 00:07:16 by nkietwee         ###   ########.fr       */
+/*   Updated: 2023/05/26 02:38:38 by nkietwee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void	ft_create(t_fillnbr *nbr, t_keyhook *data)
 {
 	ft_setratio(nbr);
 	ft_setcenter(nbr);
-	ft_isometric(nbr);
+	// ft_isometric(nbr);
 	ft_createline(nbr, data);
 }
